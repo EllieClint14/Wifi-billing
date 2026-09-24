@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Living Hope Networks - High-Speed Hotspot</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4 text-slate-100">
+
+    <div class="w-full max-w-md bg-slate-900/80 backdrop-blur-md rounded-2xl p-6 shadow-2xl border border-slate-800">
+        <div class="text-center mb-6">
+            <div class="inline-flex items-center justify-center w-16 h-16 bg-blue-600 rounded-full mb-3 shadow-lg shadow-blue-500/30">
+                <i class="fa-solid fa-wifi text-2xl text-white"></i>
+            </div>
+            <h1 class="text-2xl font-bold tracking-tight text-white">Living Hope Networks</h1>
+            <p class="text-sm text-slate-400 mt-1">Superfast internet at affordable local rates</p>
+        </div>
+
+        <div id="status-banner" class="hidden mb-4 p-3 rounded-lg text-sm font-medium text-center"></div>
+
+        <div class="mb-6">
+            <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Voucher or MPESA Message</label>
+            <div class="flex gap-2">
+                <input type="text" id="voucher-code" placeholder="Enter Code Here" class="flex-1 bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-sm uppercase tracking-widest text-center focus:outline-none focus:border-blue-500">
+                <button onclick="activateVoucher()" class="bg-blue-600 hover:bg-blue-500 px-4 rounded-lg text-sm font-semibold transition whitespace-nowrap shadow-lg shadow-blue-600/20">
+                    Connect Now
+                </button>
+            </div>
+        </div>
+
+        <a href="tel:0706037750" class="block w-full bg-emerald-600 hover:bg-emerald-500 text-white font-semibold py-2.5 rounded-lg text-center transition shadow-lg shadow-emerald-600/20 text-sm mb-6">
+            <i class="fa-solid fa-headset mr-2"></i> Call 0706037750 for assistance
+        </a>
+
+        <div class="mb-6">
+            <div class="relative flex py-2 items-center mb-3">
+                <div class="flex-grow border-t border-slate-800"></div>
+                <span class="flex-shrink mx-4 text-xs font-semibold text-slate-400 uppercase tracking-wider">Click to Select & Buy</span>
+                <div class="flex-grow border-t border-slate-800"></div>
+            </div>
+            
+            <div class="space-y-2 max-h-[380px] overflow-y-auto pr-1">
+                
+                <div class="flex items-center justify-between p-3 bg-slate-800/40 hover:bg-slate-800/80 rounded-xl border border-slate-800 hover:border-slate-700 cursor-pointer transition" onclick="triggerPayment(5, '30 Minutes')">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 font-bold text-sm">5</div>
+                        <div>
+                            <p class="font-medium text-sm">30 Minutes</p>
+                            <p class="text-xs text-slate-500">1 Device Capable</p>
+                        </div>
+                    </div>
+                    <span class="text-sm font-bold text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-lg">KES 5</span>
+                </div>
+
+                <div class="flex items-center justify-between p-3 bg-slate-800/40 hover:bg-slate-800/80 rounded-xl border border-slate-800 hover:border-slate-700 cursor-pointer transition" onclick="triggerPayment(10, '1 Hour')">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 font-bold text-sm">10</div>
+                        <div>
+                            <p class="font-medium text-sm">1 Hour</p>
+                            <p class="text-xs text-slate-500">1 Device Capable</p>
+                        </div>
+                    </div>
+                    <span class="text-sm font-bold text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-lg">KES 10</span>
+                </div>
+
+                <div class="flex items-center justify-between p-3 bg-slate-800/40 hover:bg-slate-800/80 rounded-xl border border-slate-800 hover:border-slate-700 cursor-pointer transition" onclick="triggerPayment(20, '3 Hours')">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 font-bold text-sm">20</div>
+                        <div>
+                            <p class="font-medium text-sm">3 Hours</p>
+                            <p class="text-xs text-slate-500">1 Device Capable</p>
+                        </div>
+                    </div>
+                    <span class="text-sm font-bold text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-lg">KES 20</span>
+                </div>
+
+                <div class="flex items-center justify-between p-3 bg-slate-800/40 hover:bg-slate-800/80 rounded-xl border border-slate-800 hover:border-slate-700 cursor-pointer transition" onclick="triggerPayment(45, '12 Hours')">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 font-bold text-sm">45</div>
+                        <div>
+                            <p class="font-medium text-sm">12 Hours</p>
+                            <p class="text-xs text-slate-500">1 Device Capable</p>
+                        </div>
+                    </div>
+                    <span class="text-sm font-bold text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-lg">KES 45</span>
+                </div>
+
+                <div class="flex items-center justify-between p-3 bg-slate-800/40 hover:bg-slate-800/80 rounded-xl border border-slate-800 hover:border-slate-700 cursor-pointer transition" onclick="triggerPayment(60, '24 Hours')">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 font-bold text-sm">60</div>
+                        <div>
+                            <p class="font-medium text-sm">24 Hours</p>
+                            <p class="text-xs text-slate-500">1 Device Capable</p>
+                        </div>
+                    </div>
+                    <span class="text-sm font-bold text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-lg">KES 60</span>
+                </div>
+
+                <div class="flex items-center justify-between p-3 bg-slate-800/40 hover:bg-slate-800/80 rounded-xl border border-slate-800 hover:border-slate-700 cursor-pointer transition" onclick="triggerPayment(250, '1 Week')">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 font-bold text-sm">250</div>
+                        <div>
+                            <p class="font-medium text-sm">1 Week Access</p>
+                            <p class="text-xs text-slate-500">1 Device Capable</p>
+                        </div>
+                    </div>
+                    <span class="text-sm font-bold text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-lg">KES 250</span>
+                </div>
+
+                <div class="flex items-center justify-between p-3 bg-slate-800/40 hover:bg-slate-800/80 rounded-xl border border-slate-800 hover:border-slate-700 cursor-pointer transition" onclick="triggerPayment(850, '1 Month')">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 font-bold text-sm">850</div>
+                        <div>
+                            <p class="font-medium text-sm">1 Month Premium</p>
+                            <p class="text-xs text-slate-500">1 Device Capable</p>
+                        </div>
+                    </div>
+                    <span class="text-sm font-bold text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-lg">KES 850</span>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="text-center pt-2 border-t border-slate-800/60">
+            <p class="text-[11px] text-slate-500">© 2026 Living Hope Networks. All Rights Reserved.</p>
+        </div>
+    </div>
+
+    <!-- Chat Widget Button -->
+    <button onclick="toggleChat()" id="chat-toggle" class="fixed bottom-6 right-6 w-14 h-14 bg-blue-600 hover:bg-blue-500 rounded-full shadow-lg shadow-blue-600/30 flex items-center justify-center transition-all z-50">
+        <i class="fa-solid fa-headset text-white text-xl"></i>
+    </button>
+
+    <!-- Chat Window -->
+    <div id="chat-window" class="fixed bottom-24 right-6 w-80 max-h-[500px] bg-slate-900/95 backdrop-blur-md rounded-2xl shadow-2xl border border-slate-700 hidden z-50 flex flex-col">
+        <div class="bg-blue-600 p-4 rounded-t-2xl flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
+                    <i class="fa-solid fa-headset text-white"></i>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-white text-sm">Support Assistant</h3>
+                    <p class="text-xs text-blue-100">Online • Ready to help</p>
+                </div>
+            </div>
+            <button onclick="toggleChat()" class="text-white/80 hover:text-white">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+        </div>
+
+        <div id="chat-messages" class="flex-1 overflow-y-auto p-4 space-y-3 min-h-[300px] max-h-[350px]">
+            <div class="flex gap-2">
+                <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
+                    <i class="fa-solid fa-headset text-white text-xs"></i>
+                </div>
+                <div class="bg-slate-800 rounded-2xl rounded-tl-none p-3 max-w-[85%]">
+                    <p class="text-sm text-slate-200">Hi! 👋 I'm here to help you get connected. What would you like to do?</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-3 border-t border-slate-700">
+            <div class="flex gap-2 flex-wrap">
+                <button onclick="sendQuickMessage('plans')" class="bg-slate-800 hover:bg-slate-700 text-xs px-3 py-1.5 rounded-full text-slate-300 transition">View Plans</button>
+                <button onclick="sendQuickMessage('payment')" class="bg-slate-800 hover:bg-slate-700 text-xs px-3 py-1.5 rounded-full text-slate-300 transition">How to Pay</button>
+                <button onclick="sendQuickMessage('troubleshoot')" class="bg-slate-800 hover:bg-slate-700 text-xs px-3 py-1.5 rounded-full text-slate-300 transition">Need Help</button>
+            </div>
+            <div class="flex gap-2 mt-3">
+                <input type="text" id="chat-input" placeholder="Type your message..." class="flex-1 bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-blue-500" onkeypress="handleKeyPress(event)">
+                <button onclick="sendMessage()" class="bg-blue-600 hover:bg-blue-500 px-4 rounded-lg text-sm font-semibold transition">
+                    <i class="fa-solid fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const BACKEND_URL = "http://127.0.0.1:5000/api";
+        let chatOpen = false;
+
+        function toggleChat() {
+            chatOpen = !chatOpen;
+            const chatWindow = document.getElementById('chat-window');
+            const chatToggle = document.getElementById('chat-toggle');
+            
+            if (chatOpen) {
+                chatWindow.classList.remove('hidden');
+                chatToggle.classList.add('bg-blue-500');
+            } else {
+                chatWindow.classList.add('hidden');
+                chatToggle.classList.remove('bg-blue-500');
+            }
+        }
+
+        function addMessage(text, isUser = false) {
+            const messagesDiv = document.getElementById('chat-messages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'flex gap-2' + (isUser ? ' justify-end' : '');
+            
+            if (isUser) {
+                messageDiv.innerHTML = `
+                    <div class="bg-blue-600 rounded-2xl rounded-tr-none p-3 max-w-[85%]">
+                        <p class="text-sm text-white">${text}</p>
+                    </div>
+                `;
+            } else {
+                messageDiv.innerHTML = `
+                    <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
+                        <i class="fa-solid fa-headset text-white text-xs"></i>
+                    </div>
+                    <div class="bg-slate-800 rounded-2xl rounded-tl-none p-3 max-w-[85%]">
+                        <p class="text-sm text-slate-200">${text}</p>
+                    </div>
+                `;
+            }
+            
+            messagesDiv.appendChild(messageDiv);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        function getBotResponse(userMessage) {
+            const msg = userMessage.toLowerCase();
+            
+            if (msg.includes('plan') || msg.includes('package') || msg.includes('option') || msg.includes('price')) {
+                return "Here are our available plans:\n\n• **30 Minutes** - KES 5 (Quick browsing)\n• **1 Hour** - KES 10 (Short session)\n• **3 Hours** - KES 20 (Work session)\n• **12 Hours** - KES 45 (Half day)\n• **24 Hours** - KES 60 (Full day)\n• **1 Week** - KES 250 (Weekly access)\n• **1 Month** - KES 850 (Best value!)\n\nClick any plan above to purchase it instantly!";
+            }
+            
+            if (msg.includes('pay') || msg.includes('mpesa') || msg.includes('card') || msg.includes('payment')) {
+                return "💳 **Payment Methods:**\n\n**M-Pesa:**\n1. Select your plan above\n2. Enter your M-Pesa number (format: 07XXXXXXXX)\n3. You'll receive an STK Push prompt\n4. Enter your M-Pesa PIN to confirm\n5. Your voucher code appears instantly!\n\n**Card Payment:**\nCall 0706037750 for card payment assistance.\n\n⚠️ Never share your PIN or CVV with anyone!";
+            }
+            
+            if (msg.includes('help') || msg.includes('trouble') || msg.includes('issue') || msg.includes('problem') || msg.includes('not working')) {
+                return "🔧 **Quick Troubleshooting:**\n\n**Portal not opening?**\n→ Open browser and visit any website (it will redirect)\n→ Disable VPN if enabled\n→ Clear browser cache\n\n**Payment delayed?**\n→ Wait up to 2 minutes for STK Push\n→ Check if you have sufficient M-Pesa balance\n→ Try again with correct phone number\n\n**Slow connection?**\n→ Move closer to the router\n→ Restart your device Wi-Fi\n→ Too many devices? Try a higher plan\n\n**Still stuck?** Call 0706037750 for instant support!";
+            }
+            
+            if (msg.includes('voucher') || msg.includes('code') || msg.includes('activate')) {
+                return "To activate your voucher:\n\n1. Enter your code in the input field above\n2. Click 'Connect Now'\n3. Wait for authorization confirmation\n4. You're online! 🎉\n\nLost your code? Check your M-Pesa messages or call 0706037750.";
+            }
+            
+            if (msg.includes('hello') || msg.includes('hi') || msg.includes('hey')) {
+                return "Hello! 👋 I can help you with:\n\n• Choosing the right plan\n• Payment instructions\n• Troubleshooting issues\n• Voucher activation\n\nWhat do you need help with?";
+            }
+            
+            if (msg.includes('thank')) {
+                return "You're welcome! 🌟 Enjoy your fast connection. Need anything else?";
+            }
+            
+            if (msg.includes('slow') || msg.includes('speed')) {
+                return "For better speeds:\n\n• Upgrade to a higher plan (more bandwidth = faster)\n• Move closer to the hotspot\n• Close background apps using data\n• Restart your device's Wi-Fi\n\nOur 1 Month plan offers the fastest speeds at 8M/8M!";
+            }
+            
+            return "I'm not sure about that. Try asking about:\n\n• Plans & pricing\n• How to pay\n• Troubleshooting issues\n• Voucher activation\n\nOr call 0706037750 for direct support!";
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chat-input');
+            const message = input.value.trim();
+            
+            if (!message) return;
+            
+            addMessage(message, true);
+            input.value = '';
+            
+            setTimeout(() => {
+                const response = getBotResponse(message);
+                addMessage(response.replace(/\n/g, '<br>'));
+            }, 500);
+        }
+
+        function sendQuickMessage(type) {
+            let message = '';
+            
+            switch(type) {
+                case 'plans':
+                    message = 'Show me the available plans';
+                    break;
+                case 'payment':
+                    message = 'How do I make a payment?';
+                    break;
+                case 'troubleshoot':
+                    message = 'I need help troubleshooting';
+                    break;
+            }
+            
+            document.getElementById('chat-input').value = message;
+            sendMessage();
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        async function triggerPayment(amount, name) {
+            const phone = prompt(`Enter M-Pesa Number to purchase ${name} (@ KES ${amount}):`, "07");
+            if (!phone) return;
+
+            showBanner("Sending STK Push prompt to your phone... Please enter your PIN.", "bg-amber-500/20 text-amber-300 border border-amber-500/30");
+
+            setTimeout(async () => {
+                try {
+                    const response = await fetch(`${BACKEND_URL}/payment/callback`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            "result_code": 0,
+                            "amount": amount,
+                            "transaction_id": "TXN" + Math.random().toString(36).substr(2, 9).toUpperCase()
+                        })
+                    });
+                    const data = await response.json();
+                    if(response.ok) {
+                        showBanner(`Payment Confirmed! Code: <span class="font-bold border-b border-emerald-500 text-white ml-1 font-mono tracking-wider">${data.voucher_code}</span>`, "bg-emerald-500/20 text-emerald-300 border border-emerald-500/30");
+                        document.getElementById('voucher-code').value = data.voucher_code;
+                    } else {
+                        showBanner(data.message, "bg-rose-500/20 text-rose-300 border border-rose-500/30");
+                    }
+                } catch (err) {
+                    showBanner("Could not connect to billing server.", "bg-rose-500/20 text-rose-300 border border-rose-500/30");
+                }
+            }, 2000);
+        }
+
+        async function activateVoucher() {
+            const token = document.getElementById('voucher-code').value.trim();
+            if(!token) {
+                showBanner("Please type your voucher code.", "bg-rose-500/20 text-rose-300 border border-rose-500/30");
+                return;
+            }
+
+            try {
+                const response = await fetch(`${BACKEND_URL}/voucher/activate`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ "code": token })
+                });
+                const data = await response.json();
+
+                if (response.ok && data.status === "Authorized") {
+                    showBanner("Access Granted! Opening network streams...", "bg-emerald-500/20 text-emerald-300 border border-emerald-500/30");
+                } else {
+                    showBanner(data.message || "Access Denied.", "bg-rose-500/20 text-rose-300 border border-rose-500/30");
+                }
+            } catch(err) {
+                showBanner("Authentication server error.", "bg-rose-500/20 text-rose-300 border border-rose-500/30");
+            }
+        }
+
+        function showBanner(text, classes) {
+            const banner = document.getElementById('status-banner');
+            banner.className = `mb-4 p-3 rounded-lg text-sm text-center font-medium ${classes}`;
+            banner.innerHTML = text;
+        }
+    </script>
+</body>
+</html>
